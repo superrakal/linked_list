@@ -10,20 +10,27 @@ public:
 
 	LinkedListImpl() : list_length(0) { head = last = createNode(); }
 
-    LinkedListImpl(const LinkedListImpl &other) {
+     LinkedListImpl(const LinkedListImpl &other) {
         head = last = createNode();
-        auto iter = other.begin();
-
+        LinkedListImpl::IteratorImpl iter;
+        try {
+            iter = other.begin();
+        }
+ 
+        catch (...) {
+            return;
+        }
+ 
         for (; iter != other.end(); iter++) {
             try {
                 push_back(*iter);
             }
-
+ 
             catch (...) {
                 clear();
             }
         }
-	}
+    }
 
 	~LinkedListImpl() {
         Node *i = head;
