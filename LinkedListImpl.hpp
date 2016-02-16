@@ -10,12 +10,19 @@ public:
 
 	LinkedListImpl() : list_length(0) { head = last = createNode(); }
 
-	LinkedListImpl(const LinkedListImpl &other) {
+    LinkedListImpl(const LinkedListImpl &other) {
         head = last = createNode();
         auto iter = other.begin();
 
-        for (; iter != other.end(); iter++)
-            push_back(*iter);
+        for (; iter != other.end(); iter++) {
+            try {
+                push_back(*iter);
+            }
+
+            catch (...) {
+                clear();
+            }
+        }
 	}
 
 	~LinkedListImpl() {
@@ -31,6 +38,9 @@ public:
             i = i->next;
             delete pTemp;
         }   
+
+        /*if (i)
+            delete i;*/
 	}
 
 	Node *createNode(int _value =0) { return new Node(_value); }
