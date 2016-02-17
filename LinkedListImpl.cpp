@@ -62,7 +62,7 @@ LinkedListImpl::IteratorImpl LinkedListImpl::insert(LinkedListImpl::IteratorImpl
 	Node *pNewNode = createNode(value);
 
     if (!pNewNode)
-        throw std::invalid_argument("Memory Error!");
+        throw std::bad_alloc();
 
 	if (!pNodePrev) {
 		pNewNode->next = head;

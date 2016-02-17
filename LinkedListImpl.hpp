@@ -21,9 +21,9 @@ public:
                 push_back(*iter);
             }
 
-            catch (...) {
+            catch (std::bad_alloc Err) {
                 clear();
-                throw (std::range_error("Error in CopyConstructor!"));
+                throw Err;
             }
         }
 	}
@@ -41,9 +41,6 @@ public:
             i = i->next;
             delete pTemp;
         }   
-
-        /*if (i)
-            delete i;*/
 	}
 
 	Node *createNode(int _value =0) { return new Node(_value); }
