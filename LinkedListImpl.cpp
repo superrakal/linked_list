@@ -31,26 +31,18 @@ const int &LinkedListImpl::back() const {
 }
 
 LinkedListImpl::IteratorImpl LinkedListImpl::begin() {
-	if (head == last)
-		throw (std::range_error("Empty List"));
 	return IteratorImpl(head);
 }
 
 const LinkedListImpl::IteratorImpl LinkedListImpl::begin() const {
-	if (head == last)
-		throw (std::range_error("Empty List"));
     return LinkedListImpl::IteratorImpl(head);
 }
 
 LinkedListImpl::IteratorImpl LinkedListImpl::end() {
-	if (head == last)
-		throw (std::range_error("Empty List"));
     return LinkedListImpl::IteratorImpl(last);
 }
 
 const LinkedListImpl::IteratorImpl LinkedListImpl::end() const {
-    if (head == last)
-        throw (std::range_error("Empty List"));
     return LinkedListImpl::IteratorImpl(last);
 }
 

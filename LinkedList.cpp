@@ -27,12 +27,21 @@ LinkedList::Iterator LinkedList::begin() {
     return iter;
 }
 
+/*const LinkedList::Iterator LinkedList::begin() const {
+    return list->begin();
+}*/
+
 LinkedList::Iterator LinkedList::end() {
     Iterator iter;
     *(iter.iterImpl) = list->end();
 
     return iter;
 }
+
+/*const LinkedList::Iterator LinkedList::end() const {
+    
+    return iter->end();
+}*/
 
 void LinkedList::push_back(const int &value) {
     list->push_back(value);

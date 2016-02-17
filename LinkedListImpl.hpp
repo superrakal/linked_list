@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <stdexcept>
 #include <assert.h>
 
 class LinkedListImpl {
@@ -10,27 +11,22 @@ public:
 
 	LinkedListImpl() : list_length(0) { head = last = createNode(); }
 
-     LinkedListImpl(const LinkedListImpl &other) {
+    LinkedListImpl(const LinkedListImpl &other) {
         head = last = createNode();
         LinkedListImpl::IteratorImpl iter;
-        try {
-            iter = other.begin();
-        }
- 
-        catch (...) {
-            return;
-        }
- 
+        iter = other.begin();
+
         for (; iter != other.end(); iter++) {
             try {
                 push_back(*iter);
             }
- 
+
             catch (...) {
                 clear();
+                throw (std::range_error("Error in CopyConstructor!"));
             }
         }
-    }
+	}
 
 	~LinkedListImpl() {
         Node *i = head;
