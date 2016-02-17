@@ -60,6 +60,10 @@ LinkedListImpl::IteratorImpl LinkedListImpl::insert(LinkedListImpl::IteratorImpl
     Node *pNodePrev = before.pCurrentNode->prev;
 	Node *pCurrentNode = before.pCurrentNode;
 	Node *pNewNode = createNode(value);
+
+    if (!pNewNode)
+        throw std::invalid_argument("Memory Error!");
+
 	if (!pNodePrev) {
 		pNewNode->next = head;
 		head->prev = pNewNode;
@@ -163,19 +167,14 @@ size_t LinkedListImpl::remove_all(const int &value) {
 }
 
 bool LinkedListImpl::remove_one(const int & value) {
-    try {
-        for (auto iter = begin(); iter != end(); iter++) {
-            if (value == *iter) {
-                erase(iter);
-                return true;
-            }
+    for (auto iter = begin(); iter != end(); iter++) {
+        if (value == *iter) {
+            erase(iter);
+            return true;
         }
+    }
 
-        return false;
-    }
-    catch (...) {
-        return false;
-    }
+    return false;
 }
 
 void LinkedListImpl::pop_back() {
