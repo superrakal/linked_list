@@ -20,8 +20,7 @@ public:
             try {
                 push_back(*iter);
             }
-
-            catch (std::bad_alloc Err) {
+            catch (std::bad_alloc &Err) {
                 clear();
                 throw Err;
             }

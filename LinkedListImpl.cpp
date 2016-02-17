@@ -61,9 +61,6 @@ LinkedListImpl::IteratorImpl LinkedListImpl::insert(LinkedListImpl::IteratorImpl
 	Node *pCurrentNode = before.pCurrentNode;
 	Node *pNewNode = createNode(value);
 
-    if (!pNewNode)
-        throw std::bad_alloc();
-
 	if (!pNodePrev) {
 		pNewNode->next = head;
 		head->prev = pNewNode;
